@@ -11,3 +11,5 @@ class Record:
         return self.location
     def get_time(self):
         return self.time
+    def get_status(self):
+        return self.person.get_status()
