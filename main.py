@@ -1,5 +1,6 @@
 import event
 import person
+from record import Record
 def main():
     john = person.Person(
         "John Doe",
@@ -31,14 +32,21 @@ def main():
     
     return john, alice, jeff
    
-def sherlock_holmes(people, time, crimescene="Kitchen"):
+def record_processing(people, time,recordlog):
     for person in people:
         location = person.get_location(time)
-        print(f"{person.get_name()} is at {location} at time {time}.")
-
-
+        #print(f"{person.get_name()} is at {location} at time {time}.")
+        recordlog.append(Record(person, location, time))
+    return recordlog
+    
+def sherlock_holmes(recordlog, victim_name, time_of_death):
+    for record in recordlog:
+        if record.get_location() == "Kitchen" and record.get_time() == time_of_death and record.get_person().get_name() != victim_name:
+            print(f"{record.get_person().get_name()} is a suspect.")
 if __name__ == "__main__":
     john, alice, jeff = main()
-    sherlock_holmes([john, alice, jeff], 1)
-    sherlock_holmes([john, alice, jeff], 2)
-    sherlock_holmes([john, alice, jeff], 3)
+    recordlog = []
+    recordlog=record_processing([john, alice, jeff], 1, recordlog)
+    recordlog=record_processing([john, alice, jeff], 2, recordlog)
+    recordlog=record_processing([john, alice, jeff], 3, recordlog)
+    sherlock_holmes(recordlog, "Alice Smith", 2)
