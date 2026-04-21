@@ -3,21 +3,23 @@ import location
 import person
 from record import Record
 from crime import Crime
-def main():
-    pass
-def define_locations():
+import hallway
+
+
+    
+
+    
+def define_everything():
     kitchen = location.Location("Kitchen",4)
     living_room = location.Location("Living Room", 6)
-    return kitchen, living_room
-
-def define_people():
+    hallway1 = hallway.Hallway("Hallway 1",kitchen, living_room)
     john = person.Person(
         "John Doe",
         30,
         events={
-            0: event.Event("enter", {"location": "Kitchen"}, "movement"),
-            1: event.Event("leave", {"location": "Kitchen"}, "movement"),
-            3: event.Event("enter", {"location": "Living Room"}, "movement")
+            0: event.Event("enter", {"location": kitchen}, "movement"),
+            1: event.Event("leave", {"location": kitchen}, "movement"),
+            3: event.Event("enter", {"location": living_room}, "movement")
         }
     )
 
@@ -25,9 +27,9 @@ def define_people():
         "Alice Smith",
         25,
         events={
-            0: event.Event("enter", {"location": "Kitchen"}, "movement"),
-            3: event.Event("enter", {"location": "Living Room"}, "movement"),  # moved later
-            4: event.Event("die", {"location": "Living Room", "cause": "unknown"}, "status")
+            0: event.Event("enter", {"location": kitchen}, "movement"),
+            3: event.Event("enter", {"location": living_room}, "movement"),  # moved later
+            4: event.Event("die", {"location": living_room, "cause": "unknown"}, "status")
         }
     )
 
@@ -35,8 +37,8 @@ def define_people():
         "Jeff Stein",
         40,
         events={
-            0: event.Event("enter", {"location": "Kitchen"}, "movement"),
-            3: event.Event("leave", {"location": "Kitchen"}, "movement")
+            0: event.Event("enter", {"location": kitchen}, "movement"),
+            3: event.Event("leave", {"location": kitchen}, "movement")
         }
     )
 
@@ -44,12 +46,12 @@ def define_people():
         "Bob Brown",
         50,
         events={
-            0: event.Event("enter", {"location": "Kitchen"}, "movement"),
-            2: event.Event("die", {"location": "Kitchen", "cause": "unknown"}, "status")
+            0: event.Event("enter", {"location": kitchen}, "movement"),
+            2: event.Event("die", {"location": kitchen, "cause": "unknown"}, "status")
         }
     )
 
-    return john, alice, jeff, bob
+    return john, alice, jeff, bob, kitchen, living_room, hallway1
    
 def record_processing(people, time, recordlog):
     for person in people:
@@ -77,12 +79,14 @@ def is_alive_at(person, time):
         if event.get_name() == "die":
             return False
     return True
-
+def check_alibi(person):
+    pass
 
 if __name__ == "__main__":
-    john, alice, jeff, bob = define_people()
-    crime1 = Crime("Bob Brown", 2, "Kitchen", "Homicide")
-    crime2 = Crime("Alice Smith", 4, "Living Room", "Homicide")
+    john, alice, jeff, bob, kitchen, living_room, hallway1 = define_everything()
+
+    crime1 = Crime("Bob Brown", 2, kitchen, "Homicide")
+    crime2 = Crime("Alice Smith", 4, living_room, "Homicide")
     crimes=[crime1, crime2]
     recordlog = []
     suspects = []
@@ -91,6 +95,6 @@ if __name__ == "__main__":
     recordlog=record_processing([john, alice, jeff, bob], 3, recordlog)
     recordlog=record_processing([john, alice, jeff, bob], 4, recordlog)
     for crime in crimes:
-        print(f"Investigating crime: {crime.get_crime_type()} of {crime.get_victim()} at {crime.get_time()} in {crime.get_location()}")
+        print(f"Investigating crime: {crime.get_crime_type()} of {crime.get_victim()} at {crime.get_time()} in {crime.get_location().get_name()}")
         suspects = sherlock_holmes(recordlog, crime.get_victim(), crime.get_time(), crime.get_location())
         judge(suspects, crime.get_victim())

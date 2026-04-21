@@ -1,5 +1,8 @@
+from location import Location
+
+
 class Crime:
-    def __init__(self, victim, time, location, crime_type):#should be location=Location but will break things for now, will fix later.
+    def __init__(self, victim, time, location=Location, crime_type=str):#should be location=Location but will break things for now, will fix later.
         self.victim = victim 
         self.time=time
         self.location=location

@@ -1,3 +1,6 @@
+from event import Event
+from alibi import Alibi
+
 class Person:
     def __init__(self, name, age, events=None):
         self.name = name
@@ -20,5 +23,10 @@ class Person:
             elif event.name == "leave":
                 current_location = None
 
-        return current_location or "Unknown"
- 
+        return current_location
+
+    def make_alibi(self, time, location=[]):
+        alibi_log = []
+        for t in time:
+            alibi_log.append(Alibi(t, location))
+        return alibi_log
