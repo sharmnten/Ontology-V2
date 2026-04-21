@@ -33,17 +33,4 @@ Ontology-V2/
     cd Ontology-V2
     ```
 2. Review ontology files in `ontology/`.
-3. Validate changes using project scripts (if available):
-    ```bash
-    # example
-    ./scripts/validate
-    ```
-
-## Development Workflow
-
-1. Create a feature branch.
-2. Add or update ontology terms.
-3. Document changes and rationale.
-4. Run validation checks.
-5. Open a pull request with a clear summary.
-
+3. Look at output, and understand the story told.
