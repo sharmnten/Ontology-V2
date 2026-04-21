@@ -1,8 +1,16 @@
 import event
+import location
 import person
 from record import Record
 from crime import Crime
 def main():
+    pass
+def define_locations():
+    kitchen = location.Location("Kitchen",4)
+    living_room = location.Location("Living Room", 6)
+    return kitchen, living_room
+
+def define_people():
     john = person.Person(
         "John Doe",
         30,
@@ -69,8 +77,10 @@ def is_alive_at(person, time):
         if event.get_name() == "die":
             return False
     return True
+
+
 if __name__ == "__main__":
-    john, alice, jeff, bob = main()
+    john, alice, jeff, bob = define_people()
     crime1 = Crime("Bob Brown", 2, "Kitchen", "Homicide")
     crime2 = Crime("Alice Smith", 4, "Living Room", "Homicide")
     crimes=[crime1, crime2]
