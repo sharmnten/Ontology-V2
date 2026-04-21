@@ -29,7 +29,7 @@ Ontology-V2/
 
 1. Clone the repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/sharmnten/Ontology-V2
     cd Ontology-V2
     ```
 2. Review ontology files in `ontology/`.
