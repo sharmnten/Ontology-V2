@@ -2,9 +2,9 @@ from event import Event
 from alibi import Alibi
 
 class Person:
-    def __init__(self, name, age, events=None):
+    def __init__(self, name, events=None):
         self.name = name
-        self.age = age
+  
         self.events = events or {}
         self.status = "alive"
     def get_name(self):

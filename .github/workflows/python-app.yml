@@ -55,7 +55,7 @@ jobs:
       run: |
         pytest || [ $? -eq 5 ] && echo "No tests found" || exit 1
     - name: Build executable
-      run: pyinstaller --onefile main.py --name ontology-sim
+      run: pyinstaller --onefile app.py --name ontology-sim
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:

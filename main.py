@@ -15,7 +15,6 @@ def define_everything():
     hallway1 = hallway.Hallway("Hallway 1",kitchen, living_room)
     john = person.Person(
         "John Doe",
-        30,
         events={
             0: event.Event("enter", {"location": kitchen}, "movement"),
             1: event.Event("leave", {"location": kitchen}, "movement"),
@@ -25,7 +24,6 @@ def define_everything():
 
     alice = person.Person(
         "Alice Smith",
-        25,
         events={
             0: event.Event("enter", {"location": kitchen}, "movement"),
             3: event.Event("enter", {"location": living_room}, "movement"),  # moved later
@@ -35,7 +33,6 @@ def define_everything():
 
     jeff = person.Person(
         "Jeff Stein",
-        40,
         events={
             0: event.Event("enter", {"location": kitchen}, "movement"),
             3: event.Event("leave", {"location": kitchen}, "movement")
@@ -44,7 +41,6 @@ def define_everything():
 
     bob = person.Person(
         "Bob Brown",
-        50,
         events={
             0: event.Event("enter", {"location": kitchen}, "movement"),
             2: event.Event("die", {"location": kitchen, "cause": "unknown"}, "status")
