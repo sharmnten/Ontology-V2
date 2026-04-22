@@ -98,3 +98,5 @@ if __name__ == "__main__":
         print(f"Investigating crime: {crime.get_crime_type()} of {crime.get_victim()} at {crime.get_time()} in {crime.get_location().get_name()}")
         suspects = sherlock_holmes(recordlog, crime.get_victim(), crime.get_time(), crime.get_location())
         judge(suspects, crime.get_victim())
+
+    input("\nPress Enter to exit...")
